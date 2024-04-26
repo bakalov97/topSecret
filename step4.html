@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Little Sofia | Treasure Hunt</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="info">
+    <h3>
+      Welcome to Little Sofia | Treasure Hunt
+    </h3>
+    Сред града, където студенти се събират,
+    Търсете между блок 51 и 52, нека да започнем тук,
+    По пътеката тиха и забравена,
+    Съкровище скрито, но само за избрани.
+    <br />
+    <br />
+    Сред тревата зелена и дърветата стари,
+    Ще намерите ключ, толкова драгоцен, толкова рядък.
+    Този ключ не отваря врати, не, нещо по-важно е за вас,
+    С шест цифри кодът ви чака, за напред да ви води, за вас е въпрос.
+    <br />
+    <br />
+    Търсете с внимание, със сърце и ум,
+    Заедно с това, което стои пред вас, ще направите чудеса, смел.
+    И така, с благополучие и щастие, вие ще откриете там,
+    Ключът към тайната, към това, което ви чака със свой топъл образ.
+  </div>
+  <div class="otc" name="one-time-code">
+	<fieldset>
+		<label for="otc-1">Number 1</label>
+		<label for="otc-2">Number 2</label>
+		<label for="otc-3">Number 3</label>
+		<label for="otc-4">Number 4</label>
+		<label for="otc-5">Number 5</label>
+		<label for="otc-6">Number 6</label>
+
+		<div>
+      <input type="number" pattern="[0-9]*"  value="" inputtype="numeric" autocomplete="one-time-code" id="otc-1" required>
+      <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1"  value="" inputtype="numeric" id="otc-2" required>
+      <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1"  value="" inputtype="numeric" id="otc-3" required>
+      <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1"  value="" inputtype="numeric" id="otc-4" required>
+    </div>
+	</fieldset>
+    <button class='button -regular' onclick="goToEnd()">Напред</button>
+</body>
+<script src="input.js"></script>
+<script src="goToNextStep.js"></script>
+
+<script>
+  function goToEnd(form) {
+    const first = document.getElementById('otc-1').value;
+    const second = document.getElementById('otc-2').value;
+    const third = document.getElementById('otc-3').value;
+    const fourth = document.getElementById('otc-4').value;
+
+    if(`${first}-${second}-${third}-${fourth}` === '2-7-0-2' ){
+      window.location.replace('/willyoumarryme.html');
+    }
+}
+
+</script>
+</html>

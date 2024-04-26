@@ -1,0 +1,351 @@
+/* import font(s) */
+@import url("https://fonts.googleapis.com/css?family=Special+Elite");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* root variables */
+:root {
+  --text: #9C7140;
+  --font-end: "Special Elite", cursive;
+  --font: "Poppins", sans-serif;
+
+  --bg: #F7F0E5;
+
+  --map: #4b3640;
+  --goal: #d13b3a;
+  --trail: #180a22;
+
+  --compass: #e67c54;
+  --compass-bg: #e4ddd6;
+  --needle-north: #d95b4d;
+  --needle-south: #868686;
+  /* stroke-dashoffset is used for the value ultimately picked up by path#walk
+  ! the variable is updated in the script to match the length of the path
+  */
+  --stroke-dashoffset: 0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  color: var(--text);
+  font-family: var(--font);
+  background: var(--bg);
+}
+/* have the map stretch to cover a sizeable portion of the width of the screen */
+.map {
+  font-family: var(--font-end) !important;
+  max-width: 1000px;  
+  width: 90vw;
+  height: 90vh;
+  max-height: calc(90vh / 90vw * 1000px);
+  margin: 75px auto 1rem;
+  background: var(--map);
+  border-radius: 10px;
+  box-shadow: 0 0 15px -5px var(--map), 0 2px 5px var(--map);
+  /* position relative to have the div.compass be absolute positioned with respect to this container */
+  position: relative;
+}
+
+/* include the compass as a circle */
+.compass {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  background: var(--compass-bg);
+  box-shadow: 0 0 0 0.5rem var(--compass);
+  /* move the compass in the top left corner of the map */
+  transform: translate(-50%, -50%) rotate(-12deg);
+  /* position relative to absolute position the needle in the center of the comapss */
+  position: absolute;
+  /* transparent border to have the cardinal points slightly pushed inwards */
+  border: 5px solid transparent;
+}
+/* include the needle in the center of the compass, using the clip-path property to fake the appearance of the desired shape */
+.compass .needle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 80%;
+  width: 8%;
+  background: linear-gradient(
+    to bottom,
+    var(--needle-north) 50%,
+    var(--needle-south) 50%
+  );
+  transform: translate(-50%, -50%);
+  clip-path: polygon(0% 50%, 50% 0%, 100% 50%, 50% 100%);
+}
+
+/* with a pseudo element include a dot as if fixing the needle in place */
+.compass .needle:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 7.5px;
+  height: 7.5px;
+  background: var(--text);
+  border-radius: 50%;
+}
+
+/* absolute position the cardinal points included in the compass */
+.compass .direction {
+  text-transform: uppercase;
+  color: var(--text);
+  position: absolute;
+}
+.compass .direction[data-direction="n"] {
+  color: var(--needle-north);
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.compass .direction[data-direction="e"] {
+  top: 50%;
+  right: 0;
+  transform: translate(-50%, -50%);
+}
+.compass .direction[data-direction="s"] {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.compass .direction[data-direction="w"] {
+  top: 50%;
+  left: 0;
+  transform: translate(50%, -50%);
+}
+
+/* stretch the svg to cover the space provided by the container */
+svg {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+/* style each path element with the color picked up by the stroke property */
+svg path.x {
+  color: var(--goal);
+}
+
+svg path#trail {
+  color: var(--trail);
+  /* have the trail segmented in smaller chunks */
+  stroke-dasharray: 8px;
+}
+svg path#walk {
+  /* use the same color of the background to effectively hide the trail */
+  color: var(--map);
+}
+
+/* animation drawing the X defined by the path.x elements */
+@keyframes strikeGoal {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* animation removing the overlay provided in path#walk */
+@keyframes goToGoal {
+  to {
+    stroke-dashoffset: var(--stroke-dashoffset);
+  }
+}
+
+
+.otc {
+	position: relative;
+	width: 320px;
+	margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 50px !important;
+}
+
+.otc fieldset {
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
+.otc fieldset div {
+	display: flex;
+	align-items: center;
+	justify-content: center
+}
+
+.otc fieldset div input{
+  border-radius: 7px !important;
+}
+
+
+.otc legend {
+	margin: 0 auto 1em;
+	color: var(--text);
+	font-weight: bold;
+}
+
+input[type="number"] {
+	width: 1.2em;
+	line-height: 1;
+	margin: .1em;
+	padding: 8px 0 4px;
+	font-size: 2.65em;
+	text-align: center;
+	appearance: textfield;
+	-webkit-appearance: textfield;
+	border: 0;
+	color: var(--text)
+	border-radius: 20px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.otc label {
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	-webkit-clip-path: inset(50%) !important;
+	clip-path: inset(50%) !important;
+	height: 1px !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 90vh;
+  padding: 3rem;
+  box-sizing: border-box;
+}
+
+.main__text {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.main__text span {
+  font-size: 48px;
+  font-weight: 800;
+}
+
+.main__text p {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.main__image {
+  background-image: url("/img/bg.jpg"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 90vh; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  width: 50%;
+}
+
+.button {
+  display: flex;
+  overflow: hidden;
+
+  max-height:40px;
+  max-width: 250px;
+
+  margin: 10px;
+  padding: 12px 12px;
+
+  cursor: pointer;
+  user-select: none;
+  transition: all 150ms linear;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: none;
+  text-transform: capitalize;
+
+  color: #fff;
+  border: 0 none;
+  border-radius: 10px;
+
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.3;
+
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+ 
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 160px;
+  
+  box-shadow: 2px 5px 10px #e4e4e4;
+
+  &:hover {
+    transition: all 150ms linear;
+
+    opacity: .85;
+  }
+  
+  &:active {
+    transition: all 150ms linear;
+    opacity: .75;
+  }
+  
+  &:focus {
+    outline: 1px dotted #959595;
+    outline-offset: -4px;
+  }
+}
+
+.button.-regular {
+  color: #202129;
+  background-color: #f2f2f2;
+  font-family: var(--font);
+  
+  &:hover {
+    color: #202129;
+    background-color: #e1e2e2;
+    opacity: 1;
+  }
+  
+  &:active {
+    background-color: #d5d6d6;
+    opacity: 1;
+  }
+}
+
+
+.info {
+  padding-top: 5rem;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.info h3 {
+  text-align: center;
+  margin-bottom: 16px;
+}
