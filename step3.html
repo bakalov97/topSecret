@@ -43,7 +43,7 @@
   function goToStep4(form) {
     const first = document.getElementById('otc-1').value;
 
-    if(`${first}` === 'nikola' ){
+    if(`${first.toLowerCase()}` === 'nikola' ){
       window.location.replace('/step4.html');
     }
 }
