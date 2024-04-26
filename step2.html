@@ -11,22 +11,22 @@
     <h3>
       Welcome to Little Sofia | Treasure Hunt
     </h3>
-    Сред града, където студенти се събират,
-    Търсете между блок 51 и 52, нека да започнем тук,
-    По пътеката тиха и забравена,
-    Съкровище скрито, но само за избрани.
+    "Със златни лъчи, нежен плен,
+    Той идва всеки на края на всеки ден.
+    На небето танцува, топло ни огрява,
+    И в сърцата ни оставя следа, като песен.
+
+    Със своята красота, той ни обсипва,
+    И в мига, когато потъмнява, знаем, че е време за тишина.
+    Той спира времето за момент, докато си заминава,
+    но обещава да се върне отново, с ново начало.
+
+    Какво е това, което си отива, но се губи, с пламък като феникс, всеки ден се преражда?"
     <br />
     <br />
-    Сред тревата зелена и дърветата стари,
-    Ще намерите ключ, толкова драгоцен, толкова рядък.
-    Този ключ не отваря врати, не, нещо по-важно е за вас,
-    С шест цифри кодът ви чака, за напред да ви води, за вас е въпрос.
-    <br />
-    <br />
-    Търсете с внимание, със сърце и ум,
-    Заедно с това, което стои пред вас, ще направите чудеса, смел.
-    И така, с благополучие и щастие, вие ще откриете там,
-    Ключът към тайната, към това, което ви чака със свой топъл образ.
+    Разгадай гатанката и открий склуптурата, която я изобразява.
+    Там ще отриеш четири цифрения код, който ти е нужен да продължиш.
+  
   </div>
   <div class="otc" name="one-time-code">
 	<fieldset>
@@ -34,16 +34,12 @@
 		<label for="otc-2">Number 2</label>
 		<label for="otc-3">Number 3</label>
 		<label for="otc-4">Number 4</label>
-		<label for="otc-5">Number 5</label>
-		<label for="otc-6">Number 6</label>
 
 		<div>
       <input type="number" pattern="[0-9]*"  value="" inputtype="numeric" autocomplete="one-time-code" id="otc-1" required>
       <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1"  value="" inputtype="numeric" id="otc-2" required>
       <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1"  value="" inputtype="numeric" id="otc-3" required>
       <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1"  value="" inputtype="numeric" id="otc-4" required>
-      <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1"  value="" inputtype="numeric" id="otc-5" required>
-      <input type="number" pattern="[0-9]*" min="0" max="9" maxlength="1"  value="" inputtype="numeric" id="otc-6" required>
     </div>
 	</fieldset>
     <button class='button -regular' onclick="goToStep3()">Напред</button>
@@ -57,10 +53,8 @@
     const second = document.getElementById('otc-2').value;
     const third = document.getElementById('otc-3').value;
     const fourth = document.getElementById('otc-4').value;
-    const fifth = document.getElementById('otc-5').value;
-    const sixth = document.getElementById('otc-6').value;
 
-    if(`${first}-${second}-${third}-${fourth}-${fifth}-${sixth}` === '2-2-2-2-2-2' ){
+    if(`${first}-${second}-${third}-${fourth}` === '2-0-0-1' ){
       window.location.replace('/step3.html');
     }
 }
