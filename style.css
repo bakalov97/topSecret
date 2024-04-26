@@ -234,22 +234,29 @@ input::-webkit-inner-spin-button {
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 90vh;
-  padding: 3rem;
   box-sizing: border-box;
+  flex-direction: column;
 }
 
 .main__text {
-  width: 50%;
+  padding: 1rem;
+
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 .main__text span {
   font-size: 48px;
   font-weight: 800;
+}
+
+.main__text a {
+  width: 50%;
 }
 
 .main__text p {
@@ -260,11 +267,11 @@ input::-webkit-inner-spin-button {
 .main__image {
   background-image: url("/img/bg.jpg"); /* The image used */
   background-color: #cccccc; /* Used if the image is unavailable */
-  height: 90vh; /* You must set a specified height */
+  height: 50vh; /* You must set a specified height */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
-  width: 50%;
+  width: 100%;
 }
 
 .button {
@@ -340,9 +347,10 @@ input::-webkit-inner-spin-button {
 
 
 .info {
-  padding-top: 5rem;
   margin: 0 auto;
   max-width: 500px;
+  padding: 5rem 2rem;
+  padding-bottom: 0;
 }
 
 .info h3 {
